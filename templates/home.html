@@ -1,0 +1,217 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="height: 10Vh">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/girl.png' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/tv.png' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/wires.png' %}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+<div class="container">
+
+    <div class="row mt-3 mb-3">
+
+        <h5>Выберите тариф</h5>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-transparent border-primary text-primary">
+                    <h5>ВЫГОДНОЕ РЕШЕНИЕ</h5>
+                </div>
+                <div class="card-body text-primary">
+                    <ul>
+                        <li>Скорость доступа 100 Мб/с</li>
+                        <li>ТВ 100 каналов</li>
+                        <li>Аренда приставки</li>
+                    </ul>
+                </div>
+                <div class="row m-auto mb-3">
+                    <div class="col">
+                        <input type="button" value="Подключить" class="btn btn-lg btn-block btn-outline-primary btn_modal"> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-transparent border-primary text-primary">
+                    <h5>ВЫГОДНОЕ РЕШЕНИЕ</h5>
+                </div>
+                <div class="card-body text-primary">
+                    <ul>
+                        <li>Скорость доступа 100 Мб/с</li>
+                        <li>ТВ 100 каналов</li>
+                        <li>Аренда приставки</li>
+                    </ul>
+                </div>
+                <div class="row m-auto mb-3">
+                    <div class="col">
+                        <a href="#">
+                            <input type="button" value="Подключить" class="btn btn-lg btn-block btn-outline-primary btn_modal">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-transparent border-primary text-primary">
+                    <h5>ВЫГОДНОЕ РЕШЕНИЕ</h5>
+                </div>
+                <div class="card-body text-primary">
+                    <ul>
+                        <li>Скорость доступа 100 Мб/с</li>
+                        <li>ТВ 100 каналов</li>
+                        <li>Аренда приставки</li>
+                    </ul>
+                </div>
+                <div class="row m-auto mb-3">
+                    <div class="col">
+                        <a href="#">
+                            <input type="button" value="Подключить" class="btn btn-lg btn-block btn-outline-primary btn_modal">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-transparent border-primary text-primary">
+                    <h5>ВЫГОДНОЕ РЕШЕНИЕ</h5>
+                </div>
+                <div class="card-body text-primary">
+                    <ul>
+                        <li>Скорость доступа 100 Мб/с</li>
+                        <li>ТВ 100 каналов</li>
+                        <li>Аренда приставки</li>
+                    </ul>
+                </div>      
+                <div class="row m-auto mb-3">
+                    <div class="col">
+                    <a href="#">
+                        <input type="button" value="Подключить" class="btn btn-lg btn-block btn-outline-primary btn_modal">
+                    </a>
+                </div>
+                </div>
+            </div>
+        </div>
+
+<!-- ===============================JS Modal ================================= -->
+<div class="enterRequestModal border rounded">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Введите данные для подключения</h5>
+                <!-- <button type="button" class="btn_close"></button> -->
+            </div>
+            <div class="modal-body">
+            <form action="{% url 'create_new_request' %}" method="POST">
+                {% csrf_token %}
+
+                    <!-- <div class="form-row"> -->
+                    <div class="form-group">
+                        <label for="f_name">Имя</label>
+                        <input class='form-control' type="text" id="f_name" name="f_name" maxlength='100'
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="l_name">Фамилия:</label>
+                        <input class='form-control' type="text" id="last_name" name="l_name" maxlength='100'
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Контактный телефон:</label>
+                        <input class='form-control' type="phone" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="region">Район:</label>
+                        <input class='form-control' type="region" id="region" name="region" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Город / населенный пункт:</label>
+                        <input class='form-control' type="city" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="street">Улица:</label>
+                        <input class='form-control' type="street" id="street" name="street" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="building">Номер дома:</label>
+                        <input class='form-control' type="building" id="building" name="building" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appartment">Номер квартиры:</label>
+                        <input class='form-control' type="appartment" id="appartment" name="appartment">
+                    </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="row mt-2 mb-2">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary close_modal"
+                            data-bs-dismiss="modal">Закрыть</button>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- =================================End of Modal Body======================================== -->
+
+
+
+    </div>
+</div>
+
+
+<script>
+    console.log('Script works');
+
+    const btn_modal = document.querySelectorAll('.btn_modal');
+    const close_modal = document.querySelector('.close_modal');
+    const enterRequestModal = document.querySelector('.enterRequestModal');
+
+    for (let btn of btn_modal) {
+        btn.addEventListener('click', openModal)
+    }
+
+    //btn_modal.addEventListener('click', openModal)
+    close_modal.addEventListener('click', closeModal)
+
+  function openModal() {
+        enterRequestModal.classList.add('openModal')
+    }
+
+    function closeModal() {
+        enterRequestModal.classList.remove('openModal')
+    }
+
+
+    console.log('Script finished');
+    </script>
+{% endblock %}

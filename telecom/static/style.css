@@ -1,0 +1,23 @@
+/* .navbar {
+    top: 0;
+    position: fixed;
+} */
+
+/* ===================== Delivery Page Modal for Entering New Product========================= */
+
+.enterRequestModal {
+    display: none;
+}
+
+.enterRequestModal.openModal {
+    display: block;
+    position: absolute;
+    height: 37rem;
+    width: 25Vw;
+    left: 36Vw;
+    top: 17Vh;
+    background-color: white;
+  
+}
+
+/* ====================End of Delivery Page Modal for Entering New Product ======================= */
