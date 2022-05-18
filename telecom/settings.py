@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2e8+b%t857zlf8#31v^%$pbx!m2&&wnx++^92k28nf8vd0+i8i'
+SECRET_KEY = 'django-insecure-2e9+b%t857zlf8#31v^%$pbx!m2&&wnx++^92k28nf8vd0+i8i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -142,7 +142,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TEMPLATES = [
 	{
-	    'BACKEND': 'django.template.backends.django.DjangoTemplates',	        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+	    'BACKEND': 'django.template.backends.django.DjangoTemplates',	        
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -158,7 +159,13 @@ TEMPLATES = [
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_POSRT = 537
 EMAIL_HOST_USER = '79200711112@yandex.ru'
-EMAIL_HOST_PASSWORD = 'unN-uWw-y7U-VLB'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 
