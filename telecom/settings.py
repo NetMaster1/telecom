@@ -131,7 +131,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TEMPLATES = [
 	{
-	    'BACKEND': 'django.template.backends.django.DjangoTemplates',	        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+	    'BACKEND': 'django.template.backends.django.DjangoTemplates',	        
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -150,3 +151,10 @@ EMAIL_HOST_USER = '79200711112@yandex.ru'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+

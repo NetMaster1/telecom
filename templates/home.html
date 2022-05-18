@@ -35,15 +35,17 @@
     <div class="row">
         <div class="col">
             <div class="card border-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header bg-transparent border-primary text-primary">
-                    <h5>ВЫГОДНОЕ РЕШЕНИЕ</h5>
+                <div class="card-header bg-transparent border-primary text-primary" style="min-height: 4rem">
+                    <h5>ШПД</h5>
                 </div>
                 <div class="card-body text-primary">
                     <ul>
                         <li>Скорость доступа 100 Мб/с</li>
-                        <li>ТВ 100 каналов</li>
-                        <li>Аренда приставки</li>
+                        <li>Абонентская плата 380 руб/мес</li>
+                        <li class="comment">Примечание</li>
                     </ul>
+                    Примечание: абонент самостоятельно приобретает роутер или арендует его у ОАО Ростелеком. В случает аренды абонентская плата
+                    увеличивается на 100 руб/мес
                 </div>
                 <div class="row m-auto mb-3">
                     <div class="col">
@@ -55,15 +57,21 @@
 
         <div class="col">
             <div class="card border-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header bg-transparent border-primary text-primary">
-                    <h5>ВЫГОДНОЕ РЕШЕНИЕ</h5>
+                <div class="card-header bg-transparent border-primary text-primary" style="min-height: 4rem">
+                    <h5>ШПД + ТВ 186 КАНАЛОВ</h5>
                 </div>
                 <div class="card-body text-primary">
                     <ul>
                         <li>Скорость доступа 100 Мб/с</li>
-                        <li>ТВ 100 каналов</li>
-                        <li>Аренда приставки</li>
+                        <li>186 ТВ каналов</li>
+                        <li>Абонентская плата 555 руб/мес</li>
+                        <li class="comment">Примечание</li>
                     </ul>
+
+                    Примечание: абонент самостоятельно приобретает роутер или арендует его у ОАО Ростелеком. В случает аренды абонентская плата
+                    увеличивается на 100 руб/мес
+
+                    Примечание: в зависимости от модели телевизора предоставление услуги телевидения может быть выполнено с помощью телевизионной приставки или программно посредством установки специального программного обеспечения на телевизор. В первом случае ОАО Ростелеком предоставляет телевизионную приставку в аренду, что увеличивает абонентскую плату на 150 руб/мес. Абонент может выкупить телевизионную приставку одним платежом, сумма которого составляет 3990 руб.
                 </div>
                 <div class="row m-auto mb-3">
                     <div class="col">
@@ -76,16 +84,18 @@
         </div>
         <div class="col">
             <div class="card border-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header bg-transparent border-primary text-primary">
-                    <h5>ВЫГОДНОЕ РЕШЕНИЕ</h5>
+                <div class="card-header bg-transparent border-primary text-primary" style="min-height: 4rem" >
+                    <h5>ШПД В ЧАСТНЫЙ СЕКТОР</h5>
                 </div>
                 <div class="card-body text-primary">
                     <ul>
                         <li>Скорость доступа 100 Мб/с</li>
-                        <li>ТВ 100 каналов</li>
-                        <li>Аренда приставки</li>
+                        <li>Абонентская плата 399 руб/мес</li>
+                        <li class="comment">Примечание</li>
                     </ul>
+                Примечание: абонент самостоятельно приобретает роутер или арендует его у ОАО Ростелеком. В случает аренды абонентская плата увеличивается на 100 руб/мес
                 </div>
+                
                 <div class="row m-auto mb-3">
                     <div class="col">
                         <a href="#">
@@ -97,15 +107,18 @@
         </div>
         <div class="col">
             <div class="card border-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header bg-transparent border-primary text-primary">
-                    <h5>ВЫГОДНОЕ РЕШЕНИЕ</h5>
+                <div class="card-header bg-transparent border-primary text-primary"style="min-height: 4rem" >
+                    <h5>ШПД В ЧАСТНЫЙ СЕКТОР + ТВ 186 КАНАЛОВ</h5>
                 </div>
                 <div class="card-body text-primary">
                     <ul>
                         <li>Скорость доступа 100 Мб/с</li>
-                        <li>ТВ 100 каналов</li>
-                        <li>Аренда приставки</li>
+                        <li>186 ТВ каналов</li>
+                        <li>Абонентская плата 681 руб/мес</li>
+                        <button class="comment">Примечание</li>
                     </ul>
+                   
+
                 </div>      
                 <div class="row m-auto mb-3">
                     <div class="col">
@@ -182,6 +195,18 @@
     </div>
 </div>
 <!-- =================================End of Modal Body======================================== -->
+<div class="enterCommentModal border rounded">
+    Примечание: абонент самостоятельно приобретает роутер или арендует его у ОАО Ростелеком. В случает аренды абонентская
+    плата
+    увеличивается на 100 руб/мес
+    
+    Примечание: в зависимости от модели телевизора предоставление услуги телевидения может быть выполнено с помощью
+    телевизионной приставки или программно посредством установки специального программного обеспечения на телевизор. В
+    первом случае Ростелеком предоставляет телевизионную приставку в аренду, что увеличивает абонентскую плату на 150
+    руб/мес. Абонент может выкупить телевизионную приставку одним платежом, сумма которого составляет 3990 руб.
+</div>
+<!-- ====================Comment Modal===================== -->
+
 
 
 
@@ -195,21 +220,35 @@
     const btn_modal = document.querySelectorAll('.btn_modal');
     const close_modal = document.querySelector('.close_modal');
     const enterRequestModal = document.querySelector('.enterRequestModal');
+    const comment = document.querySelector('.comment');
 
+    //==================btn_modal events===========================================
     for (let btn of btn_modal) {
         btn.addEventListener('click', openModal)
     }
-
     //btn_modal.addEventListener('click', openModal)
     close_modal.addEventListener('click', closeModal)
-
-  function openModal() {
+    function openModal() {
         enterRequestModal.classList.add('openModal')
     }
-
     function closeModal() {
         enterRequestModal.classList.remove('openModal')
     }
+
+    //=================comment modal event=========================================
+    //or (let item of comment) {
+    //    item.addEventListener('click', openComment)
+    //}
+    comment.addEventListener('click', openComment)
+    
+
+    function openComment() {
+            enterCommentModal.classList.add('openComment')
+        }
+
+    function closeComment() {
+            enterCommentModal.classList.remove('openComment')
+        }
 
 
     console.log('Script finished');
