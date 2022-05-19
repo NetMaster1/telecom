@@ -17,7 +17,7 @@
     left: 36Vw;
     top: 17Vh;
     background-color: white;
-
+  
 }
 
 /* ====================End of Delivery Page Modal for Entering New Product ======================= */
@@ -29,7 +29,7 @@
 .commentModal.openComment {
     display: block;
     position: absolute;
-    height: 37rem;
+    height: 31rem;
     width: 25Vw;
     left: 36Vw;
     top: 17Vh;
