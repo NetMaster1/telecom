@@ -1,18 +1,20 @@
-
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
 
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="height: 10Vh">
+
+<div class="container">
+
+    <div id="carouselExampleControls" class="carousel slide mt-1" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{% static 'images/girl.png' %}" class="d-block w-100" alt="...">
+                <img src="{% static 'images/woman.jpg' %}" class="d-block w-100 border rounded" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="{% static 'images/tv.png' %}" class="d-block w-100" alt="...">
+                <img src="{% static 'images/dino.jpg' %}" class="d-block w-100 border rounded" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="{% static 'images/wires.png' %}" class="d-block w-100" alt="...">
+                <img src="{% static 'images/gaming.jpg' %}" class="d-block w-100 border rounded" alt="...">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -24,107 +26,41 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+  
 
-<div class="container">
+    <div class="row align-items-center" style="min-height: 10Vh">
 
-    <div class="row mt-3 mb-3">
-
-        <h5>Выберите тариф</h5>
+    <h4 style="color: red"> Оставьте заявку и получите кэш-бэк в размере 20% от абоненской платы за год. </h4>
     </div>
 
     <div class="row">
-        <div class="col">
-            <div class="card border-primary mb-3" style="max-width: 18rem; min-height: 21rem;">
-                <div class="card-header bg-transparent border-primary text-primary" style="min-height: 4rem">
-                    <h5>ШПД</h5>
+        {% for item in tariffs %}
+        <div class="col-3">
+            <div class="card border-secondary mb-3" style="max-width: 18rem; min-height: 22rem;">
+                <div class="card-header bg-transparent border-secondary text-dark text-center" style="min-height: 5rem">
+                    <h5>{{item.name}}</h5>
                 </div>
-                <div class="card-body text-primary">
-                    <ul>
-                        <li>Скорость доступа 100 Мб/с</li>
-                        <li>Абонентская плата 380 руб/мес</li>
-                        <li class="comment">Ознакомиться с примечанием</li>
-                    </ul>
+                <div class="card-body text-dark">
+                    <p><i class="fa-solid fa-globe"></i> {{item.speed}} </p>
+                    {% if item.tv == True %}
+                    <p><i class="fa-solid fa-tv"></i> 183 канала <a href="{% url 'channels' %}" style="color: red;text-decoration: none;" target="_blank">посмотреть</a> </p>
+                    {% endif %}
+                    <p><i class="fa-solid fa-ruble-sign"></i> {{item.price}} руб. </p>
+                    <p> <i class="fa-solid fa-network-wired"></i> {{item.technology}}
+                        <a class="comment" href=# style="color: red;text-decoration: none;" >прочитать</a>
+                    </p>
                   
                 </div>
                 <div class="row m-auto mb-3">
                     <div class="col">
-                        <input type="button" value="Оставить заявку" class="btn btn-lg btn-block btn-outline-primary btn_modal"> 
+                        <input type="button" value="Оставить заявку" class="btn btn-lg btn-block btn-outline-danger btn_modal"> 
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col">
-            <div class="card border-primary mb-3" style="max-width: 18rem; min-height: 21rem;">
-                <div class="card-header bg-transparent border-primary text-primary" style="min-height: 4rem">
-                    <h5>ШПД + ТВ 186 КАНАЛОВ</h5>
-                </div>
-                <div class="card-body text-primary">
-                    <ul>
-                        <li>Скорость доступа 100 Мб/с</li>
-                        <li>186 ТВ каналов</li>
-                        <li>Абонентская плата 555 руб/мес</li>
-                        <li class='comment'>Ознакомиться с примечанием</li>
-                    </ul>
-
-                </div>
-                <div class="row m-auto mb-3">
-                    <div class="col">
-                        <a href="#">
-                            <input type="button" value="Оставить заявку" class="btn btn-lg btn-block btn-outline-primary btn_modal">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-primary mb-3" style="max-width: 18rem; min-height: 21rem;">
-                <div class="card-header bg-transparent border-primary text-primary" style="min-height: 4rem" >
-                    <h5>ШПД В ЧАСТНЫЙ СЕКТОР</h5>
-                </div>
-                <div class="card-body text-primary">
-                    <ul>
-                        <li>Скорость доступа 100 Мб/с</li>
-                        <li>Абонентская плата 399 руб/мес</li>
-                        <li class="comment">Ознакомиться с примечанием</li>
-                    </ul>
-             
-                </div>
-                
-                <div class="row m-auto mb-3">
-                    <div class="col">
-                        <a href="#">
-                            <input type="button" value="Оставить заявку" class="btn btn-lg btn-block btn-outline-primary btn_modal">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-primary mb-3" style="max-width: 18rem; min-height: 21rem; ">
-                <div class="card-header bg-transparent border-primary text-primary"style="min-height: 4rem" >
-                    <h5>ШПД В ЧАСТНЫЙ СЕКТОР + ТВ 186 КАНАЛОВ</h5>
-                </div>
-                <div class="card-body text-primary">
-                    <ul>
-                        <li>Скорость доступа 100 Мб/с</li>
-                        <li>186 ТВ каналов</li>
-                        <li>Абонентская плата 681 руб/мес</li>
-                        <li class="comment">Ознакомиться с примечанием</li>
-                       
-                    </ul>
-
-
-                </div>      
-                <div class="row m-auto mb-3">
-                    <div class="col">
-                    <a href="#">
-                        <input type="button" value="Оставить заявку" class="btn btn-lg btn-block btn-outline-primary btn_modal">
-                    </a>
-                </div>
-                </div>
-            </div>
-        </div>
+    {% endfor %}
+     
+      
 
 <!-- ===============================JS Modal ================================= -->
 <div class="enterRequestModal border rounded">
@@ -191,17 +127,72 @@
     </div>
 </div>
 <!-- =================================End of Modal Body======================================== -->
-<div class="commentModal border border-primary rounded primary text-primary">
-    <p><h5>Примечание</h5></p>
-    <p>Aбонент самостоятельно приобретает роутер или арендует его у ОАО Ростелеком. В случае аренды абонентская
-    плата увеличивается на 100 руб/мес
-    </p>
-    При выборе тарифа с интерактивным телевидением услуга телевещания предоставляется в зависимости от модели телевизора с помощью телевизионной приставки или программно посредством установки специального программного обеспечения на телевизор. В первом случае Ростелеком предоставляет телевизионную приставку в аренду, что увеличивает абонентскую плату на 150 руб/мес. Абонент может выкупить телевизионную приставку одним платежом, сумма которого составляет 3990 руб.
+<div class="commentModal border border-secondary rounded primary text-dark min">
+    <div class="commentModalContent">
+        <span class="close">&times;</span>
+       <div class="row m-auto">
+           <div class="col">
+               <p><h3>Типы соединений</h3></p>
+               <p style="font-size: 1.5rem">Ростелеком предоставляет возможность подключения с помощью трех основных типов соединения. В зависимости от адреса подключения некоторые из них могут быть недоступны.</p>
+
+<!-- ========================Menu Line===============================            -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#fttx-tab-pane" type="button"
+                        role="tab" aria-controls="home-tab-pane" aria-selected="true" style="color: black">FTTX</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#xpon-tab-pane" type="button"
+                        role="tab" aria-controls="profile-tab-pane" aria-selected="false"style="color: black" >xPON</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#adsl-tab-pane" type="button"
+                        role="tab" aria-controls="contact-tab-pane" aria-selected="false"style="color: black" >ADSL</button>
+                </li>
+              
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="fttx-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                    FTTB (Fiber-To-The-Building) — дословно, с английского переводится как оптика до здания. «Зданием» обычно именуется
+                    подъезд, где и устанавливают коммутационное оборудование. Если у вас кабель (витая пара) с подъезда заходит напрямую в
+                    компьютер или роутер — то у вас FTTB.
+                    
+                    Оптический кабель выгодно отличается тем, что позволяет подключать всего по одному кабелю сразу интернет, телефон и
+                    кабельное телевидение: пропускная способность оптического кабеля свободно справляется с такой нагрузкой.
+
+                    ...</div>
+                <div class="tab-pane fade" id="xpon-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                    Технология xPON Ростелеком – это пассивные оптические сети. Это современная технология, которая стремительно
+                    развивается. Суть технологии заключается в том, что в сети не используются активные компоненты, только пассивные –
+                    сплиттеры.
+                    
+                    Оптоволоконный интернет от Ростелеком имеет одно важное преимущество – огромную скорость соединения. Она может намного
+                    превышать 1 гигабит/сек.
+                    ... </div>
+                <div class="tab-pane fade" id="adsl-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+                    Главная особенность технологии в том, что она не требует организации отдельной линии. Весь трафик передается по тому же
+                    каналу, что и трафик для домашнего телефона.
+                    
+                    Главный недостаток ADSL — это крайне низкая скорость подключения. Если в современных технологиях (xPON или FTTb) она
+                    варьируется в пределах 100 Мбит/сек и 1 Гбит/сек, то здесь она не превышает 10-15 Мбит/сек.
+                    ...</div>
+              
+            </div>
+
+<!-- ===============================End of Menu Line============================= -->
+    
+            </div>
+        </div>
+   
+
+   
 </div>
+
 <!-- ====================Comment Modal===================== -->
 
     </div>
 </div>
+
 
 
 <script>
@@ -213,7 +204,8 @@
     //==============================================
     const comments = document.querySelectorAll('.comment');
     const commentModal = document.querySelector('.commentModal');
-   
+    const close = document.querySelector('.close');
+    //=====================================
 
 
     //==================btn_modal events===========================================
@@ -233,18 +225,30 @@
 
     //=================comment modal event=========================================
     for (let item of comments) {
-            item.addEventListener('mouseenter', openComment)
+            item.addEventListener('click', openComment)
         }
-    for (let item of comments) {
-            item.addEventListener('mouseleave', closeComment)
-        }
+    //for (let item of comments) {
+    //        item.addEventListener('mouseleave', closeComment)
+    //    }
     
+    close.addEventListener('click', closeComment)
+
     function openComment() {
             commentModal.classList.add('openComment')
+            hide.classList.add('openModal')
         }
     function closeComment() {
             commentModal.classList.remove('openComment')
         }
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == commentModal) {
+            commentModal.classList.remove('openComment')
+            //modal.style.display = "none";
+            }
+        }
+
 
     console.log('Script finished');
     </script>

@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
-from .models import Request
+from .models import Request, Tariff, Channel
 
 # Create your views here.
 def home (request):
-    return render (request, 'home.html')
+    tariffs=Tariff.objects.all().order_by('price')
+    context = {
+            'tariffs': tariffs
+        }
+    return render (request, 'home.html', context)
 
 def create_new_request(request):
     if request.method=="POST":
@@ -26,6 +30,16 @@ def create_new_request(request):
             building=building,
             appartment=appartment
         )
-
         return redirect ('send_email')
+        
+def channels (request):
+    channels=Channel.objects.all()
+    contex={
+        'channels': channels
+    }
+    return render (request, 'channels.html', contex)
+
+def technology (request):
+ 
+    return render (request, 'technology.html')
 

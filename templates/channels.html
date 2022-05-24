@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row" style="height:5rem">
+        {% for item in channels %}
+        <div class="col">
+            {{item.name}}
+            <img src="{{item.thumbnail_file.url}}" style="width:5rem">
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
