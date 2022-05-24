@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+<div class="row justify-content-between">
+    <div class="col-5">
+           
+        <div class="row m-auto mt-3 mb-3" style="font-size: 2rem; font-weight: 400">Заявка на подключение</div>
+            <div class="modal-body">
+                <form action="{% url 'create_new_request' %}" method="POST">
+                    {% csrf_token %}
+
+                    <!-- <div class="form-row"> -->
+                    <div class="form-group">
+                        <label for="f_name">Имя</label>
+                        <input class='form-control' type="text" id="f_name" name="f_name" maxlength='100' required>
+                    </div>
+                    <div class="form-group">
+                        <label for="l_name">Фамилия:</label>
+                        <input class='form-control' type="text" id="last_name" name="l_name" maxlength='100' required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Контактный телефон:</label>
+                        <input class='form-control' type="phone" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="region">Район:</label>
+                        <input class='form-control' type="region" id="region" name="region" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Город / населенный пункт:</label>
+                        <input class='form-control' type="city" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="street">Улица:</label>
+                        <input class='form-control' type="street" id="street" name="street" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="building">Номер дома:</label>
+                        <input class='form-control' type="building" id="building" name="building" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appartment">Номер квартиры:</label>
+                        <input class='form-control' type="appartment" id="appartment" name="appartment">
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-1">
+                            <input type="checkbox" id="agreement" name="agreeement" checked="checked" style="background-color: red">
+                        </div>
+                        <div class="col-10">
+                            <div id="div">Я согласен с <a href="{% url 'agreement' %}" style="color:red; text-decoration:none;">условиями обработки данных</a></div>
+                            
+                        </div>
+                       
+                    </div>
+            </div>
+
+            <div class="row m-auto mt-3">
+                <button type="submit" class="btn btn-outline-danger" style="font-weight: 1000">Отправить заявку </button>
+            </div>
+        </form>
+    
+  
+    </div>
+    <div class="col-5">
+        <div class="row m-auto mt-3 mb-3" style="font-size: 2rem; font-weight: 400">{{tarif.name}}</div>
+
+        <div class="row mt-3">
+            <div class="col-2">
+            <i class="fa-solid fa-globe"></i>
+            </div>
+            <div class="col-9">
+                {{tarif.speed}}
+            </div>
+        </div>
+
+        {% if tarif.tv == True %}
+        <div class="row mt-3">
+            <div class="col-2">
+                <i class="fa-solid fa-tv"></i>
+            </div>
+            <div class="col-9">
+                183 канала <a href="{% url 'channels' %}" style="color: red;text-decoration: none;" target="_blank">посмотреть</a>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="row mt-3">
+            <div class="col-2">
+                <i class="fa-solid fa-play"></i></i>
+            </div>
+            <div class="col-9">
+                Онлайн-кинотеатр Wink <br>
+                25.000 фильмов и сериалов
+            </div>
+        </div>
+
+        {% if tarif.yandex == True %}
+        <div class="row mt-3">
+            <div class="col-2">
+                <i class="fa-solid fa-database"></i>
+            </div>
+            <div class="col-9">
+                Яндекс диск 5Гб
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="row mt-3">
+            <div class="col-2">
+                <i class="fa-solid fa-network-wired"></i>
+            </div>
+            <div class="col-9">
+                {{tarif.technology}}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-2">
+                <i class="fa-solid fa-font-awesome"></i>
+            </div>
+            <div class="col-9">
+                Кэш-бэк 20% в течение года
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-2">
+                <i class="fa-solid fa-ruble-sign"></i>
+            </div>
+            <div class="col-9">
+                Абонентская плата {{tarif.price}} руб/мес
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-2">
+                <i class="fa-solid fa-tower-cell"></i>
+            </div>
+            <div class="col-9">
+                <h5><a id='a_id_section' href=# data-bs-toggle="collapse" data-bs-target='#section_open' style="text-decoration: none; color: red">Оборудование <i class="fa-solid fa-chevron-down"></i></h5></a>
+            
+                <div id="section_open" class='collapse'>
+                    <p>ksjdkfjskjdfksjdkfjskj</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

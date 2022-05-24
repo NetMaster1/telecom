@@ -40,6 +40,15 @@ def channels (request):
     return render (request, 'channels.html', contex)
 
 def technology (request):
- 
     return render (request, 'technology.html')
+
+def agreement (request):
+    return render (request, 'agreement.html')
+
+def tarif (request, tarif_id):
+    tarif=Tariff.objects.get(id=tarif_id)
+    context ={
+        'tarif': tarif
+    }
+    return render (request, 'tarif.html', context)
 
