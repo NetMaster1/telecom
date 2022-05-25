@@ -64,71 +64,7 @@
      
       
 
-<!-- ===============================JS Modal ================================= -->
-<div class="enterRequestModal border rounded">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Введите данные для подключения</h5>
-                <!-- <button type="button" class="btn_close"></button> -->
-            </div>
-            <div class="modal-body">
-            <form action="{% url 'create_new_request' %}" method="POST">
-                {% csrf_token %}
 
-                    <!-- <div class="form-row"> -->
-                    <div class="form-group">
-                        <label for="f_name">Имя</label>
-                        <input class='form-control' type="text" id="f_name" name="f_name" maxlength='100'
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="l_name">Фамилия:</label>
-                        <input class='form-control' type="text" id="last_name" name="l_name" maxlength='100'
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Контактный телефон:</label>
-                        <input class='form-control' type="phone" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="region">Район:</label>
-                        <input class='form-control' type="region" id="region" name="region" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">Город / населенный пункт:</label>
-                        <input class='form-control' type="city" id="city" name="city" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="street">Улица:</label>
-                        <input class='form-control' type="street" id="street" name="street" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="building">Номер дома:</label>
-                        <input class='form-control' type="building" id="building" name="building" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="appartment">Номер квартиры:</label>
-                        <input class='form-control' type="appartment" id="appartment" name="appartment">
-                    </div>
-            </div>
-
-            <div class="modal-footer">
-                <div class="row mt-2 mb-2">
-                    <div class="col">
-                        <button type="button" class="btn btn-primary close_modal"
-                            data-bs-dismiss="modal">Закрыть</button>
-                    </div>
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary">Отправить</button>
-                    </div>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- =================================End of Modal Body======================================== -->
 <div class="commentModal border border-secondary rounded primary text-dark min">
     <div class="commentModalContent">
         <span class="close">&times;</span>
@@ -160,9 +96,7 @@
                     компьютер или роутер — то у вас FTTB.
                     
                     Оптический кабель выгодно отличается тем, что позволяет подключать всего по одному кабелю сразу интернет, телефон и
-                    кабельное телевидение: пропускная способность оптического кабеля свободно справляется с такой нагрузкой.
-
-                    ...</div>
+                    кабельное телевидение: пропускная способность оптического кабеля свободно справляется с такой нагрузкой.</div>
                 <div class="tab-pane fade" id="xpon-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                     Технология xPON Ростелеком – это пассивные оптические сети. Это современная технология, которая стремительно
                     развивается. Суть технологии заключается в том, что в сети не используются активные компоненты, только пассивные –
@@ -170,14 +104,14 @@
                     
                     Оптоволоконный интернет от Ростелеком имеет одно важное преимущество – огромную скорость соединения. Она может намного
                     превышать 1 гигабит/сек.
-                    ... </div>
+                    </div>
                 <div class="tab-pane fade" id="adsl-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
                     Главная особенность технологии в том, что она не требует организации отдельной линии. Весь трафик передается по тому же
                     каналу, что и трафик для домашнего телефона.
                     
                     Главный недостаток ADSL — это крайне низкая скорость подключения. Если в современных технологиях (xPON или FTTb) она
                     варьируется в пределах 100 Мбит/сек и 1 Гбит/сек, то здесь она не превышает 10-15 Мбит/сек.
-                    ...</div>
+                    </div>
               
             </div>
 
@@ -200,9 +134,9 @@
 <script>
     console.log('Script works');
 
-    const btn_modal = document.querySelectorAll('.btn_modal');
-    const close_modal = document.querySelector('.close_modal');
-    const enterRequestModal = document.querySelector('.enterRequestModal');
+    //const btn_modal = document.querySelectorAll('.btn_modal');
+    //const close_modal = document.querySelector('.close_modal');
+    //const enterRequestModal = document.querySelector('.enterRequestModal');
     //==============================================
     const comments = document.querySelectorAll('.comment');
     const commentModal = document.querySelector('.commentModal');
@@ -211,19 +145,19 @@
 
 
     //==================btn_modal events===========================================
-    for (let btn of btn_modal) {
-        btn.addEventListener('click', openModal)
-    }
+    //for (let btn of btn_modal) {
+    //    btn.addEventListener('click', openModal)
+    //}
     //btn_modal.addEventListener('click', openModal)
-    close_modal.addEventListener('click', closeModal)
+    //close_modal.addEventListener('click', closeModal)
 
-    function openModal() {
+    /*function openModal() {
         console.log('clicked')
         enterRequestModal.classList.add('openModal')
     }
     function closeModal() {
         enterRequestModal.classList.remove('openModal')
-    }
+    }*/
 
     //=================comment modal event=========================================
     for (let item of comments) {

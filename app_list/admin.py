@@ -2,7 +2,7 @@ from django.contrib import admin
 from . models import ChannelGroup, Request, Tariff, Channel, ChannelGroup
 
 class RequestAdmin(admin.ModelAdmin):
-    list_display = ('id', 'created', 'phone', 'f_name', 'l_name', 'region', 'city')
+    list_display = ('id', 'created', 'f_name', 'phone', 'region', 'city', 'street')
 
 class TariffAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'technology', 'speed', 'tv', 'wink', 'yandex', 'price')

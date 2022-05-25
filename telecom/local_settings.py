@@ -9,7 +9,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'www.rostelecom.org', 'rostelecom.org
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_POSRT = 537
 EMAIL_HOST_USER = '79200711112@yandex.ru'
-EMAIL_HOST_PASSWORD = 'unN-uWw-y7U-VLB'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 

@@ -42,9 +42,9 @@
     border-color: dark;
     border-radius: 1%;
     width: 80Vw;
-    height: 70Vh;
+    height: 50Vh;
     top: 10Vh;
-    left: 20Vh;
+   
 }
 
 /* The Close Button */
@@ -64,3 +64,16 @@
 }
 
 /* ====================End of Delivery Page Modal for Entering New Product ======================= */
+
+.fontHeading1 {
+    font-weight: 1000;
+    font-size: 1.5rem;
+}
+
+.fontHeading2 {
+    font-weight: 1000;
+}
+
+.fontWeight {
+    font-weight: 700;
+}
