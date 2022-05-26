@@ -135,6 +135,10 @@ STATICFILES_DIRS = [
 	os.path.join (BASE_DIR, 'telecom/static')
 ]
 
+# Media Folder Settings
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -159,9 +163,10 @@ TEMPLATES = [
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_POSRT = 537
 EMAIL_HOST_USER = '79200711112@yandex.ru'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'unN-uWw-y7U-VLB'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
 
 
 try:

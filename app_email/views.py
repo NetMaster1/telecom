@@ -13,17 +13,18 @@ def send_email (request):
         #subject
         'Заявка Ростелеком ' + request_dateTime,
         #message
-        'ФИО: ' + current_request.f_name +' '+ current_request.l_name + '\n' + 
+        #'ФИО: ' + current_request.f_name +' '+ current_request.l_name + '\n' + 
+        'ФИО: ' + current_request.f_name +'\n' + 
         'Телефон: ' + current_request.phone + '\n' +
         'Район: ' + current_request.region + '\n' +
         'Город: ' + current_request.city + '\n' +
         'Улица: ' + current_request.street + '\n' +
-        'Дом # ' + current_request.building + '\n' +
-        'Квартира # ' + current_request.appartment,
+        'Дом # ' + current_request.building + '\n',
+        #'Квартира # ' + current_request.appartment,
         #from
         '79200711112@yandex.ru',
         #to
-        ['merch_reports@mail.ru'],
+        ['sergei_vinokurov@rambler.ru'],
         fail_silently=False    
     )
     return redirect ('home')
