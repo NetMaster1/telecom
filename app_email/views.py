@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from app_list.models import Request
+from django.contrib import messages
 
 # Create your views here.
 
@@ -24,8 +25,10 @@ def send_email (request):
         #from
         '79200711112@yandex.ru',
         #to
-        ['sergei_vinokurov@rambler.ru'],
-        fail_silently=False    
+        ['merch_reports@mail.ru' , 'sergei_vinokurov@rambler.ru'],
+        fail_silently=False
     )
-    return redirect ('home')
+    messages.error(request,"Спасибо, что выбираете нас. Наш оператор свяжется с вами в течение часа")
+    return redirect ("home")
+    
 

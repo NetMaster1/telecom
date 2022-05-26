@@ -1,0 +1,1669 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.10
+-- Dumped by pg_dump version 10.10
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: app_list_channel; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.app_list_channel (
+    id bigint NOT NULL,
+    name character varying(250) NOT NULL,
+    thumbnail_file character varying(100) NOT NULL,
+    group_id bigint
+);
+
+
+ALTER TABLE public.app_list_channel OWNER TO postgres;
+
+--
+-- Name: app_list_channel_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.app_list_channel_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.app_list_channel_id_seq OWNER TO postgres;
+
+--
+-- Name: app_list_channel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.app_list_channel_id_seq OWNED BY public.app_list_channel.id;
+
+
+--
+-- Name: app_list_channelgroup; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.app_list_channelgroup (
+    id bigint NOT NULL,
+    name character varying(250) NOT NULL
+);
+
+
+ALTER TABLE public.app_list_channelgroup OWNER TO postgres;
+
+--
+-- Name: app_list_channelgroup_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.app_list_channelgroup_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.app_list_channelgroup_id_seq OWNER TO postgres;
+
+--
+-- Name: app_list_channelgroup_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.app_list_channelgroup_id_seq OWNED BY public.app_list_channelgroup.id;
+
+
+--
+-- Name: app_list_request; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.app_list_request (
+    id bigint NOT NULL,
+    created timestamp with time zone NOT NULL,
+    f_name character varying(250) NOT NULL,
+    phone character varying(250),
+    region character varying(250),
+    city character varying(250),
+    street character varying(250),
+    building character varying(250)
+);
+
+
+ALTER TABLE public.app_list_request OWNER TO postgres;
+
+--
+-- Name: app_list_request_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.app_list_request_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.app_list_request_id_seq OWNER TO postgres;
+
+--
+-- Name: app_list_request_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.app_list_request_id_seq OWNED BY public.app_list_request.id;
+
+
+--
+-- Name: app_list_tariff; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.app_list_tariff (
+    id bigint NOT NULL,
+    name character varying(250) NOT NULL,
+    technology character varying(10),
+    speed character varying(10) NOT NULL,
+    tv boolean NOT NULL,
+    wink boolean NOT NULL,
+    price integer NOT NULL,
+    yandex boolean NOT NULL
+);
+
+
+ALTER TABLE public.app_list_tariff OWNER TO postgres;
+
+--
+-- Name: app_list_tariff_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.app_list_tariff_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.app_list_tariff_id_seq OWNER TO postgres;
+
+--
+-- Name: app_list_tariff_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.app_list_tariff_id_seq OWNED BY public.app_list_tariff.id;
+
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO postgres;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id bigint NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO postgres;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO postgres;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(150) NOT NULL,
+    last_name character varying(150) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.auth_user OWNER TO postgres;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_user_groups (
+    id bigint NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_groups OWNER TO postgres;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_user_user_permissions (
+    id bigint NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_user_permissions OWNER TO postgres;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_user_user_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO postgres;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO postgres;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO postgres;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO postgres;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_migrations (
+    id bigint NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO postgres;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO postgres;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO postgres;
+
+--
+-- Name: app_list_channel id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_list_channel ALTER COLUMN id SET DEFAULT nextval('public.app_list_channel_id_seq'::regclass);
+
+
+--
+-- Name: app_list_channelgroup id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_list_channelgroup ALTER COLUMN id SET DEFAULT nextval('public.app_list_channelgroup_id_seq'::regclass);
+
+
+--
+-- Name: app_list_request id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_list_request ALTER COLUMN id SET DEFAULT nextval('public.app_list_request_id_seq'::regclass);
+
+
+--
+-- Name: app_list_tariff id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_list_tariff ALTER COLUMN id SET DEFAULT nextval('public.app_list_tariff_id_seq'::regclass);
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Data for Name: app_list_channel; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.app_list_channel (id, name, thumbnail_file, group_id) FROM stdin;
+1	Всё ТВ	uploads/broadcastChannel1551035282500.png	1
+2	Известия HD	uploads/broadcastChannel1505804888707.png	1
+3	RTTV HD	uploads/broadcastChannel1454316053815.png	1
+4	СоловьёвLIVE	uploads/broadcastChannel1649289410058.png	1
+5	РБК-ТВ HD	uploads/broadcastChannel1638867626014.png	1
+6	Мир 24	uploads/broadcastChannel1379933299124.png	1
+7	Большая Азия HD	uploads/broadcastChannel1507800734167.png	1
+8	Вместе-РФ	uploads/broadcastChannel1377841663888.png	1
+9	ЛДПР ТВ	uploads/broadcastChannel1487682537999.png	1
+10	Эхо-ТВ	uploads/broadcastChannel1485871369339.png	1
+11	Красная Линия	uploads/broadcastChannel1515740692241.png	1
+12	360 Новости	uploads/broadcastChannel1623130111336.png	1
+13	Хабар 24	uploads/broadcastChannel1566887742556.png	1
+14	Первый Российский национальный канал	uploads/broadcastChannel1633698140281.png	1
+15	Дума ТВ	uploads/broadcastChannel1575968208447.png	1
+16	Беларусь 24	uploads/broadcastChannel1430135007862.png	1
+17	CCTV-4	uploads/broadcastChannel1573743371766.png	1
+18	CGTN	uploads/broadcastChannel1573743508603.png	1
+19	RT DE	uploads/broadcastChannel1639663082630_iDKyrkJ.png	1
+20	Первый канал	uploads/broadcastChannel1575974029605.png	2
+21	Россия 1	uploads/broadcastChannel1575974092090.png	2
+22	Матч ТВ	uploads/broadcastChannel1579166225840.png	2
+23	НТВ	uploads/broadcastChannel1575977274022.png	2
+24	Пятый канал	uploads/broadcastChannel1575974264283.png	2
+25	Россия К	uploads/broadcastChannel1416829916584.jpg	2
+26	Россия 24	uploads/broadcastChannel1575974166980.png	2
+27	Карусель	uploads/broadcastChannel1602684840507.png	2
+28	ОТР	uploads/broadcastChannel1575974312106.png	2
+29	ТВ Центр	uploads/broadcastChannel1575974332728.png	2
+30	РЕН ТВ	uploads/broadcastChannel1575974355323.png	2
+31	Спас	uploads/broadcastChannel1579164435642.png	2
+32	СТС	uploads/broadcastChannel1575974400107.png	2
+33	Домашний	uploads/broadcastChannel1575974441990.png	2
+34	ТВ 3	uploads/broadcastChannel1575974476304.png	2
+35	ПЯТНИЦА!	uploads/broadcastChannel1575974502468.png	2
+36	Звезда	uploads/broadcastChannel1579164681656.png	2
+37	МИР	uploads/broadcastChannel1575974555692.png	2
+38	ТНТ	uploads/broadcastChannel1579164629740.png	2
+39	МУЗ ТВ	uploads/broadcastChannel1635751289036.png	2
+40	Че	uploads/broadcastChannel1534748838619.png	2
+41	Ю	uploads/broadcastChannel1536222789598.png	2
+42	Первый канал HD	uploads/broadcastChannel1359692480631.png	2
+43	Россия-1 HD	uploads/broadcastChannel1575974092090_zSQ2O7e.png	2
+44	СТС HD	uploads/broadcastChannel1575974400107_1.png	2
+45	РЕН ТВ HD	uploads/broadcastChannel1587721548778.png	2
+46	Домашний HD	uploads/broadcastChannel1575974441990_Wvp8dkP.png	2
+47	ТНТ HD	uploads/broadcastChannel1498723924268.png	2
+48	МИР HD	uploads/broadcastChannel1575974555692_LZNFNEj.png	2
+49	Национальное ТВ Чувашии	uploads/broadcastChannel1571905861223.png	3
+50	Волга	uploads/broadcastChannel1634572037573.jpg	3
+51	ТНВ-Татарстан	uploads/broadcastChannel1548674219026.png	3
+52	ННТВ	uploads/broadcastChannel1529407174954.png	3
+53	Нижний Новгород 24	uploads/broadcastChannel1607330310185.png	3
+54	Время Н	uploads/broadcastChannel1634282587355.jpeg	3
+55	Шаян ТВ	uploads/broadcastChannel1572342482472.jpg	3
+56	НЖК	uploads/broadcastChannel1540994472535.jpg	3
+57	Дзержинск ТВ	uploads/broadcastChannel1584428583719.png	3
+58	Shopping Live	uploads/broadcastChannel1410510973913.png	4
+59	Shops&Show	uploads/broadcastChannel1524148267231.png	3
+60	Ювелирочка	uploads/broadcastChannel1644908444442.png	3
+61	Leomax24	uploads/broadcastChannel1602665460051.png	3
+62	360	uploads/broadcastChannel1623130079966.png	5
+63	THOMEP	uploads/broadcastChannel1632998326794.png	5
+64	Суббота	uploads/broadcastChannel1612164866388.png	5
+65	Бобёр	uploads/broadcastChannel1591092877735.png	5
+66	КВН ТВ	uploads/broadcastChannel1469085196268.png	5
+67	WORLD FASHION CHANNEL	uploads/broadcastChannel1541762493601.png	5
+68	Сарафан	uploads/broadcastChannel1417162201057.png	5
+69	Анекдот ТВ	uploads/broadcastChannel1487682247533.png	5
+70	2х2	uploads/broadcastChannel1629275973989.png	5
+71	ТНТ4	uploads/broadcastChannel1526281866345.png	5
+72	ЖАРА HD	uploads/broadcastChannel1539097017817.png	5
+73	MTV HD	uploads/broadcastChannel1633351844245.png	5
+74	Восток ТВ	uploads/broadcastChannel1524495072979.png	5
+75	O2TV	uploads/broadcastChannel1531898855802.png	5
+76	Жар Птица	uploads/broadcastChannel1534332245248.png	5
+77	Калейдоскоп ТВ	uploads/broadcastChannel1533029739490.png	5
+78	Театр	uploads/broadcastChannel1551086897202.png	5
+79	Зал Суда	uploads/broadcastChannel1603440603287.png	5
+80	Gasnetwork	uploads/broadcastChannel1603440712998.png	5
+81	ЖИВИ!	uploads/broadcastChannel1532934267367.png	5
+82	Точка отрыва	uploads/broadcastChannel1580449550549.png	5
+83	Центральное телевидение	uploads/broadcastChannel1553847237614.png	5
+84	БелРос	uploads/broadcastChannel1537448328923.png	5
+85	Победа	uploads/broadcastChannel1554878585157.png	6
+86	History HD	uploads/broadcastChannel1458221311781.png	6
+87	ПОЕХАЛИ!	uploads/broadcastChannel1646974349640.png	6
+88	National Geographic	uploads/broadcastChannel1489671300179.png	6
+89	Viasat Explore HD	uploads/broadcastChannel1464349744571.jpg	6
+90	Viasat History HD	uploads/broadcastChannel1464349407342.jpg	6
+91	Моя планета	uploads/broadcastChannel1459172529088.png	6
+92	Т24	uploads/broadcastChannel1646972513019.png	6
+93	National Geographic Wild HD	uploads/broadcastChannel1489671213175.png	6
+94	National Geographic Wild	uploads/broadcastChannel1489671213175_obYpu7D.png	6
+95	Охота и рыбалка	uploads/broadcastChannel1590666357830.png	6
+96	Загородная жизнь HD	uploads/broadcastChannel1578646103275.png	5
+97	ТЕЛЕКАФЕ	uploads/broadcastChannel1646974199055.png	6
+98	Ратник	uploads/broadcastChannel1603957045055.png	6
+99	Travel & Adventure HD	uploads/broadcastChannel1612945496019.png	6
+100	Мужской	uploads/broadcastChannel1625492793962.png	6
+101	Наука	uploads/broadcastChannel1646972871303.png	6
+102	Просвещение	uploads/broadcastChannel1346057898595.jpg	6
+103	Viasat Nature HD	uploads/broadcastChannel1515743629536.png	6
+104	Доктор	uploads/broadcastChannel1605274266061.png	6
+105	ZooПарк	uploads/broadcastChannel1580449687604.png	6
+106	Дикий	uploads/broadcastChannel1524473340595.png	6
+107	История	uploads/broadcastChannel1459259844664.png	6
+108	Ключ	uploads/broadcastChannel1650276884632.png	6
+109	Каzakh TV	uploads/broadcastChannel1566886699805.png	6
+110	Глазами туриста	uploads/broadcastChannel1574410658755.png	6
+111	RTD	uploads/broadcastChannel1453718551648.png	6
+112	Усадьба	uploads/broadcastChannel1580449616450.png	6
+113	Союз	uploads/broadcastChannel1416837374849.jpg	6
+114	CGTN Russian	uploads/broadcastChannel1573743608668.png	6
+115	Мосфильм. Золотая коллекция.	uploads/broadcastChannel1598865594306.png	7
+116	TV1000 HD	uploads/broadcastChannel1638166708813.png	7
+117	CTC Love	uploads/broadcastChannel1560863957061.png	7
+118	TV XXI Век	uploads/broadcastChannel1346239910320.jpeg	7
+119	Иллюзион +	uploads/broadcastChannel1580449348118.png	7
+120	TV1000 Русское кино HD	uploads/broadcastChannel1636357052616.png	7
+121	Paramount Comedy HD	uploads/broadcastChannel1627985477259.png	7
+122	Red	uploads/broadcastChannel1624426187372.png	7
+123	HCT	uploads/broadcastChannel1416835879128.png	7
+124	FOX HD	uploads/broadcastChannel1471350188983.png	7
+125	Fox Life HD	uploads/broadcastChannel1507613643852.png	7
+126	sci-fi	uploads/broadcastChannel1624425940255.png	7
+127	Кино ТВ HD	uploads/broadcastChannel1495010014758.png	7
+128	Zee TV	uploads/broadcastChannel1508425991071.png	7
+129	Ретро	uploads/broadcastChannel1580449471126.png	7
+130	Русский роман HD	uploads/broadcastChannel1472644358623.png	7
+131	Страшное HD	uploads/broadcastChannel1409825342330.png	7
+132	Дорама	uploads/broadcastChannel1541762292221.png	7
+133	Star Cinema	uploads/broadcastChannel1533042068501.png	7
+134	Star Family	uploads/broadcastChannel1533042023172.png	7
+135	BOLT	uploads/broadcastChannel1533041882840.png	7
+136	НТВ ХИТ	uploads/broadcastChannel1534412850237.png	7
+137	SHOT TV	uploads/broadcastChannel1567502033025.png	7
+138	Star Air	uploads/broadcastChannel1640602104575.png	7
+139	Star World	uploads/broadcastChannel1641969841652.png	7
+140	Bollywood HD	uploads/broadcastChannel1453718948436.png	7
+141	Nickelodeon	uploads/broadcastChannel1431508678353.png	8
+142	Disney	uploads/broadcastChannel1597929017396.png	7
+143	Мульт	uploads/broadcastChannel1605274373146.png	8
+144	Радость моя	uploads/broadcastChannel1608894626693.png	8
+145	TiJi	uploads/broadcastChannel1482158529745.png	8
+146	Мама	uploads/broadcastChannel1422953211322.png	8
+147	Мультмузыка	uploads/broadcastChannel1512047245756.png	8
+148	Da Vinci	uploads/broadcastChannel1594734300258.png	8
+149	CTC Kids HD	uploads/broadcastChannel1530869002013.png	8
+150	ТНТ Music	uploads/broadcastChannel1531398664531.png	9
+151	Music Box Russia	uploads/broadcastChannel1596204434638.png	9
+152	Music Box Gold	uploads/broadcastChannel1596440897307.png	9
+153	RU.TV HD	uploads/broadcastChannel1491231120629.jpg	9
+154	MTV OO's	uploads/broadcastChannel1627916206365.png	9
+155	MCM Top	uploads/broadcastChannel1416842869994.jpg	9
+156	BRiDGE	uploads/broadcastChannel1638805857830.png	9
+157	BRiDGE Русский Хит	uploads/broadcastChannel1638805818098.png	9
+158	BRiDGE HITS	uploads/broadcastChannel1638805772511.png	9
+159	BRiDGE Classic	uploads/broadcastChannel1638805736005.png	9
+160	BRiDGE DELUXE	uploads/broadcastChannel1638805593035.png	9
+161	AIVA	uploads/broadcastChannel1558676364079.png	9
+162	Музыка Первого	uploads/broadcastChannel1572337394186.png	9
+163	BRiDGE Шлягер	uploads/broadcastChannel1638805696388.png	9
+164	Удар	uploads/broadcastChannel1640851095497.png	10
+165	KHL Prime	uploads/broadcastChannel1646973566980.png	10
+166	KHL	uploads/broadcastChannel1630493387850.png	10
+167	МАТЧ! АРЕНА HD	uploads/broadcastChannel1462349760590.png	10
+168	Русский экстрим HD	uploads/broadcastChannel1623060952932.png	10
+169	Мир Баскетбола	uploads/broadcastChannel1575035264578.png	10
+170	МАТЧ! ИГРА HD	uploads/broadcastChannel1454338056109.png	10
+171	Телеканал СТАРТ	uploads/broadcastChannel1633595430878.png	10
+172	Драйв	uploads/broadcastChannel1580449197624.png	10
+173	Матч ТВ HD	uploads/broadcastChannel1572954888012.png	10
+174	Radio Enegry	uploads/broadcastChannel1601303240645.png	11
+175	АвтоРадио	uploads/broadcastChannel1601303420609.png	11
+176	Радио Romantika	uploads/broadcastChannel1601303509942.png	10
+177	Юмор FM	uploads/broadcastChannel1601303599082.png	11
+178	Relax FM	uploads/broadcastChannel1601303683843.png	11
+179	Детское радио	uploads/broadcastChannel1601303762944.png	11
+180	Comedy Radio	uploads/broadcastChannel1601303880009.png	11
+\.
+
+
+--
+-- Data for Name: app_list_channelgroup; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.app_list_channelgroup (id, name) FROM stdin;
+1	Информационные
+2	Эфирные
+3	Региональные
+4	Телемагазины
+5	Развлекательные
+6	Познавательные
+7	Кино и сериалы
+8	Детские
+9	Музыкальные
+10	Спортивные
+11	Радио
+\.
+
+
+--
+-- Data for Name: app_list_request; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.app_list_request (id, created, f_name, phone, region, city, street, building) FROM stdin;
+1	2022-05-18 11:44:04.096887+03	Сергей	+79200711112	Борский	Бор	Перронная	6
+2	2022-05-25 17:20:06.979518+03	Винокуров СН.	+79200711112	Борский	Бор	Перронная	6
+3	2022-05-25 17:23:17.571439+03	Винокуров СН.	+79200711112	Борский	Бор	Перронная	6
+4	2022-05-25 17:23:48.796815+03	Винокуров СН.	+79200711112	Борский	Бор	Перронная	6
+5	2022-05-25 17:24:17.353249+03	Сергей	+79200711112	Борский	Бор	Перронная	6
+6	2022-05-25 17:28:01.433166+03	Сергей	+79200711112	Борский	Бор	Перронная	6
+7	2022-05-26 02:26:10.571025+03	Сергей	+79200711112	Борский	Бор	Перронная	6
+8	2022-05-26 02:28:05.182266+03	Винокуров СН.	+79200711112	Борский	Бор	Перронная	6
+9	2022-05-26 02:29:09.962674+03	Сергей	+79200711112	Борский	Бор	Перронная	6
+\.
+
+
+--
+-- Data for Name: app_list_tariff; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.app_list_tariff (id, name, technology, speed, tv, wink, price, yandex) FROM stdin;
+1	Выгодное решение. Интернет.	FTTX	100 Мб/сек	f	t	380	f
+2	Выгодное решение. Пакет.	FTTX	100 Мб/сек	t	t	555	f
+5	Технологии развлечения + Яндекс диск 5Гб	FTTX	100 Мб/сек	t	t	699	t
+6	Выгодное решение. Интернет.	ADSL	6 Мб/сек	f	f	420	f
+7	Технологии доступа + Яндекс диск 5Гб	PON	100 Мб/сек	f	t	449	t
+8	Для своих	FTTX/PON	100 Мб/сек	t	t	199	f
+4	Технологии развлечения.	FTTX	100 Мб/сек	t	t	699	f
+3	Технологии доступа.	PON	100 Мб/сек	f	t	399	f
+\.
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can view log entry	1	view_logentry
+5	Can add permission	2	add_permission
+6	Can change permission	2	change_permission
+7	Can delete permission	2	delete_permission
+8	Can view permission	2	view_permission
+9	Can add group	3	add_group
+10	Can change group	3	change_group
+11	Can delete group	3	delete_group
+12	Can view group	3	view_group
+13	Can add user	4	add_user
+14	Can change user	4	change_user
+15	Can delete user	4	delete_user
+16	Can view user	4	view_user
+17	Can add content type	5	add_contenttype
+18	Can change content type	5	change_contenttype
+19	Can delete content type	5	delete_contenttype
+20	Can view content type	5	view_contenttype
+21	Can add session	6	add_session
+22	Can change session	6	change_session
+23	Can delete session	6	delete_session
+24	Can view session	6	view_session
+25	Can add request	7	add_request
+26	Can change request	7	change_request
+27	Can delete request	7	delete_request
+28	Can view request	7	view_request
+29	Can add tariff	8	add_tariff
+30	Can change tariff	8	change_tariff
+31	Can delete tariff	8	delete_tariff
+32	Can view tariff	8	view_tariff
+33	Can add channel	9	add_channel
+34	Can change channel	9	change_channel
+35	Can delete channel	9	delete_channel
+36	Can view channel	9	view_channel
+37	Can add channel group	10	add_channelgroup
+38	Can change channel group	10	change_channelgroup
+39	Can delete channel group	10	delete_channelgroup
+40	Can view channel group	10	view_channelgroup
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+1	pbkdf2_sha256$320000$sfsD87s6esC0sr8WaRhhSy$yCB1YmgZWh7pntgE0D0BOHIji2Z5RuUXjoa441gPgr0=	2022-05-24 14:35:37.178223+03	t	NetMaster			79200711112@yandex.ru	t	t	2022-05-23 18:37:47.070913+03
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2022-05-23 18:39:25.235775+03	1	Tariff object (1)	1	[{"added": {}}]	8	1
+2	2022-05-23 18:39:55.355163+03	2	Tariff object (2)	1	[{"added": {}}]	8	1
+3	2022-05-23 18:41:18.481693+03	3	Tariff object (3)	1	[{"added": {}}]	8	1
+4	2022-05-23 18:42:16.878087+03	4	Tariff object (4)	1	[{"added": {}}]	8	1
+5	2022-05-23 18:45:45.031718+03	4	Tariff object (4)	2	[{"changed": {"fields": ["Yandex"]}}]	8	1
+6	2022-05-23 18:47:11.288902+03	4	Tariff object (4)	2	[{"changed": {"fields": ["Yandex"]}}]	8	1
+7	2022-05-23 18:48:42.254598+03	5	Tariff object (5)	1	[{"added": {}}]	8	1
+8	2022-05-23 19:02:06.676478+03	6	Tariff object (6)	1	[{"added": {}}]	8	1
+9	2022-05-23 19:04:14.296975+03	7	Tariff object (7)	1	[{"added": {}}]	8	1
+10	2022-05-23 19:08:31.095862+03	7	Tariff object (7)	2	[{"changed": {"fields": ["Name"]}}]	8	1
+11	2022-05-23 19:08:55.067799+03	5	Tariff object (5)	2	[{"changed": {"fields": ["Name"]}}]	8	1
+12	2022-05-23 19:12:55.949749+03	8	Tariff object (8)	1	[{"added": {}}]	8	1
+13	2022-05-23 23:59:19.545386+03	1	Tariff object (1)	2	[{"changed": {"fields": ["Speed"]}}]	8	1
+14	2022-05-23 23:59:51.342687+03	2	Tariff object (2)	2	[{"changed": {"fields": ["Speed"]}}]	8	1
+15	2022-05-24 00:00:00.689373+03	3	Tariff object (3)	2	[{"changed": {"fields": ["Speed"]}}]	8	1
+16	2022-05-24 00:00:08.741191+03	5	Tariff object (5)	2	[{"changed": {"fields": ["Speed"]}}]	8	1
+17	2022-05-24 00:00:17.389723+03	6	Tariff object (6)	2	[{"changed": {"fields": ["Speed"]}}]	8	1
+18	2022-05-24 00:00:25.328796+03	7	Tariff object (7)	2	[{"changed": {"fields": ["Speed"]}}]	8	1
+19	2022-05-24 00:00:37.273129+03	8	Tariff object (8)	2	[{"changed": {"fields": ["Speed"]}}]	8	1
+20	2022-05-24 00:01:11.353755+03	4	Tariff object (4)	2	[{"changed": {"fields": ["Speed"]}}]	8	1
+21	2022-05-24 00:05:05.99073+03	3	Tariff object (3)	2	[{"changed": {"fields": ["Price"]}}]	8	1
+22	2022-05-24 00:50:32.873827+03	1	ChannelGroup object (1)	1	[{"added": {}}]	10	1
+23	2022-05-24 00:50:46.156653+03	2	ChannelGroup object (2)	1	[{"added": {}}]	10	1
+24	2022-05-24 00:50:58.981685+03	3	ChannelGroup object (3)	1	[{"added": {}}]	10	1
+25	2022-05-24 00:51:10.519244+03	4	ChannelGroup object (4)	1	[{"added": {}}]	10	1
+26	2022-05-24 00:51:26.612452+03	5	ChannelGroup object (5)	1	[{"added": {}}]	10	1
+27	2022-05-24 00:51:37.282676+03	6	ChannelGroup object (6)	1	[{"added": {}}]	10	1
+28	2022-05-24 00:51:48.990409+03	7	ChannelGroup object (7)	1	[{"added": {}}]	10	1
+29	2022-05-24 00:52:00.190524+03	8	ChannelGroup object (8)	1	[{"added": {}}]	10	1
+30	2022-05-24 00:52:10.68042+03	9	ChannelGroup object (9)	1	[{"added": {}}]	10	1
+31	2022-05-24 00:52:20.139628+03	10	ChannelGroup object (10)	1	[{"added": {}}]	10	1
+32	2022-05-24 00:52:29.460482+03	11	ChannelGroup object (11)	1	[{"added": {}}]	10	1
+33	2022-05-24 00:54:19.836729+03	1	Channel object (1)	1	[{"added": {}}]	9	1
+34	2022-05-24 00:54:47.864844+03	2	Channel object (2)	1	[{"added": {}}]	9	1
+35	2022-05-24 00:55:22.300741+03	3	Channel object (3)	1	[{"added": {}}]	9	1
+36	2022-05-24 00:55:56.225276+03	4	Channel object (4)	1	[{"added": {}}]	9	1
+37	2022-05-24 00:56:22.19787+03	5	Channel object (5)	1	[{"added": {}}]	9	1
+38	2022-05-24 00:56:48.696412+03	6	Channel object (6)	1	[{"added": {}}]	9	1
+39	2022-05-24 00:57:09.500243+03	7	Channel object (7)	1	[{"added": {}}]	9	1
+40	2022-05-24 00:57:32.143921+03	8	Channel object (8)	1	[{"added": {}}]	9	1
+41	2022-05-24 00:57:53.368843+03	9	Channel object (9)	1	[{"added": {}}]	9	1
+42	2022-05-24 00:58:13.39803+03	10	Channel object (10)	1	[{"added": {}}]	9	1
+43	2022-05-24 00:58:33.117034+03	11	Channel object (11)	1	[{"added": {}}]	9	1
+44	2022-05-24 00:58:53.82856+03	12	Channel object (12)	1	[{"added": {}}]	9	1
+45	2022-05-24 00:59:21.332003+03	13	Channel object (13)	1	[{"added": {}}]	9	1
+46	2022-05-24 00:59:52.539832+03	14	Channel object (14)	1	[{"added": {}}]	9	1
+47	2022-05-24 01:00:14.010517+03	15	Channel object (15)	1	[{"added": {}}]	9	1
+48	2022-05-24 01:00:30.708062+03	16	Channel object (16)	1	[{"added": {}}]	9	1
+49	2022-05-24 01:00:53.26222+03	17	Channel object (17)	1	[{"added": {}}]	9	1
+50	2022-05-24 01:01:12.115272+03	18	Channel object (18)	1	[{"added": {}}]	9	1
+51	2022-05-24 01:01:30.881209+03	19	Channel object (19)	1	[{"added": {}}]	9	1
+52	2022-05-24 01:22:04.811448+03	19	Channel object (19)	2	[{"changed": {"fields": ["Thumbnail file"]}}]	9	1
+53	2022-05-24 01:32:21.489312+03	20	Channel object (20)	1	[{"added": {}}]	9	1
+54	2022-05-24 01:32:41.819297+03	21	Channel object (21)	1	[{"added": {}}]	9	1
+55	2022-05-24 01:33:04.99817+03	22	Channel object (22)	1	[{"added": {}}]	9	1
+56	2022-05-24 01:33:23.012064+03	23	Channel object (23)	1	[{"added": {}}]	9	1
+57	2022-05-24 01:33:40.439319+03	24	Channel object (24)	1	[{"added": {}}]	9	1
+58	2022-05-24 01:34:11.435117+03	25	Channel object (25)	1	[{"added": {}}]	9	1
+59	2022-05-24 01:34:30.646812+03	26	Channel object (26)	1	[{"added": {}}]	9	1
+60	2022-05-24 01:34:44.392632+03	27	Channel object (27)	1	[{"added": {}}]	9	1
+61	2022-05-24 01:35:06.724078+03	28	Channel object (28)	1	[{"added": {}}]	9	1
+62	2022-05-24 01:35:38.024382+03	29	Channel object (29)	1	[{"added": {}}]	9	1
+63	2022-05-24 01:35:58.983703+03	30	Channel object (30)	1	[{"added": {}}]	9	1
+64	2022-05-24 01:36:17.22819+03	31	Channel object (31)	1	[{"added": {}}]	9	1
+65	2022-05-24 01:36:47.730634+03	32	Channel object (32)	1	[{"added": {}}]	9	1
+66	2022-05-24 01:37:09.767414+03	33	Channel object (33)	1	[{"added": {}}]	9	1
+67	2022-05-24 01:37:26.380991+03	34	Channel object (34)	1	[{"added": {}}]	9	1
+68	2022-05-24 01:37:50.973808+03	35	Channel object (35)	1	[{"added": {}}]	9	1
+69	2022-05-24 01:38:10.500239+03	36	Channel object (36)	1	[{"added": {}}]	9	1
+70	2022-05-24 01:38:32.039165+03	37	Channel object (37)	1	[{"added": {}}]	9	1
+71	2022-05-24 01:38:50.650445+03	38	Channel object (38)	1	[{"added": {}}]	9	1
+72	2022-05-24 01:39:05.984065+03	39	Channel object (39)	1	[{"added": {}}]	9	1
+73	2022-05-24 01:39:23.537903+03	40	Channel object (40)	1	[{"added": {}}]	9	1
+74	2022-05-24 01:39:54.706929+03	41	Channel object (41)	1	[{"added": {}}]	9	1
+75	2022-05-24 01:40:13.433935+03	42	Channel object (42)	1	[{"added": {}}]	9	1
+76	2022-05-24 01:40:40.699258+03	43	Channel object (43)	1	[{"added": {}}]	9	1
+77	2022-05-24 01:41:10.417456+03	44	Channel object (44)	1	[{"added": {}}]	9	1
+78	2022-05-24 01:41:47.400855+03	45	Channel object (45)	1	[{"added": {}}]	9	1
+79	2022-05-24 01:42:21.047919+03	46	Channel object (46)	1	[{"added": {}}]	9	1
+80	2022-05-24 01:42:46.390884+03	47	Channel object (47)	1	[{"added": {}}]	9	1
+81	2022-05-24 01:43:04.713207+03	48	Channel object (48)	1	[{"added": {}}]	9	1
+82	2022-05-24 01:55:53.753084+03	49	Channel object (49)	1	[{"added": {}}]	9	1
+83	2022-05-24 01:56:12.095619+03	50	Channel object (50)	1	[{"added": {}}]	9	1
+84	2022-05-24 01:56:29.980456+03	51	Channel object (51)	1	[{"added": {}}]	9	1
+85	2022-05-24 01:56:55.94366+03	52	Channel object (52)	1	[{"added": {}}]	9	1
+86	2022-05-24 01:57:18.624409+03	53	Channel object (53)	1	[{"added": {}}]	9	1
+87	2022-05-24 01:57:46.742365+03	54	Channel object (54)	1	[{"added": {}}]	9	1
+88	2022-05-24 01:58:18.7166+03	55	Channel object (55)	1	[{"added": {}}]	9	1
+89	2022-05-24 01:58:34.107604+03	56	Channel object (56)	1	[{"added": {}}]	9	1
+90	2022-05-24 01:58:56.217473+03	57	Channel object (57)	1	[{"added": {}}]	9	1
+91	2022-05-24 01:59:40.014373+03	58	Channel object (58)	1	[{"added": {}}]	9	1
+92	2022-05-24 02:00:00.173631+03	59	Channel object (59)	1	[{"added": {}}]	9	1
+93	2022-05-24 02:00:21.144965+03	60	Channel object (60)	1	[{"added": {}}]	9	1
+94	2022-05-24 02:00:41.136929+03	61	Channel object (61)	1	[{"added": {}}]	9	1
+95	2022-05-24 14:36:17.961073+03	62	Channel object (62)	1	[{"added": {}}]	9	1
+96	2022-05-24 14:36:58.251499+03	63	Channel object (63)	1	[{"added": {}}]	9	1
+97	2022-05-24 15:40:01.999184+03	64	Channel object (64)	1	[{"added": {}}]	9	1
+98	2022-05-24 15:40:21.340126+03	65	Channel object (65)	1	[{"added": {}}]	9	1
+99	2022-05-24 15:40:39.709243+03	66	Channel object (66)	1	[{"added": {}}]	9	1
+100	2022-05-24 15:41:03.058613+03	67	Channel object (67)	1	[{"added": {}}]	9	1
+101	2022-05-24 15:41:19.277198+03	68	Channel object (68)	1	[{"added": {}}]	9	1
+102	2022-05-24 15:41:54.236864+03	69	Channel object (69)	1	[{"added": {}}]	9	1
+103	2022-05-24 15:42:14.21176+03	70	Channel object (70)	1	[{"added": {}}]	9	1
+104	2022-05-24 15:42:33.326124+03	71	Channel object (71)	1	[{"added": {}}]	9	1
+105	2022-05-24 15:42:50.554754+03	72	Channel object (72)	1	[{"added": {}}]	9	1
+106	2022-05-24 15:43:36.630878+03	73	Channel object (73)	1	[{"added": {}}]	9	1
+107	2022-05-24 15:44:03.126305+03	74	Channel object (74)	1	[{"added": {}}]	9	1
+108	2022-05-24 15:44:42.527915+03	75	Channel object (75)	1	[{"added": {}}]	9	1
+109	2022-05-24 15:45:04.943912+03	76	Channel object (76)	1	[{"added": {}}]	9	1
+110	2022-05-24 15:45:34.339327+03	77	Channel object (77)	1	[{"added": {}}]	9	1
+111	2022-05-24 15:45:50.241276+03	78	Channel object (78)	1	[{"added": {}}]	9	1
+112	2022-05-24 15:46:56.602896+03	79	Channel object (79)	1	[{"added": {}}]	9	1
+113	2022-05-24 15:47:21.666671+03	80	Channel object (80)	1	[{"added": {}}]	9	1
+114	2022-05-24 15:47:44.560303+03	81	Channel object (81)	1	[{"added": {}}]	9	1
+115	2022-05-24 15:48:09.454049+03	82	Channel object (82)	1	[{"added": {}}]	9	1
+116	2022-05-24 15:48:41.378117+03	83	Channel object (83)	1	[{"added": {}}]	9	1
+117	2022-05-24 15:49:01.229314+03	84	Channel object (84)	1	[{"added": {}}]	9	1
+118	2022-05-24 15:49:36.574581+03	85	Channel object (85)	1	[{"added": {}}]	9	1
+119	2022-05-24 15:49:59.539298+03	86	Channel object (86)	1	[{"added": {}}]	9	1
+120	2022-05-24 15:50:23.293093+03	87	Channel object (87)	1	[{"added": {}}]	9	1
+121	2022-05-24 15:50:49.004198+03	88	Channel object (88)	1	[{"added": {}}]	9	1
+122	2022-05-24 15:51:08.946618+03	89	Channel object (89)	1	[{"added": {}}]	9	1
+123	2022-05-24 15:51:31.074139+03	90	Channel object (90)	1	[{"added": {}}]	9	1
+124	2022-05-24 15:51:52.671335+03	91	Channel object (91)	1	[{"added": {}}]	9	1
+125	2022-05-24 15:52:24.980647+03	92	Channel object (92)	1	[{"added": {}}]	9	1
+126	2022-05-24 15:52:56.488103+03	93	Channel object (93)	1	[{"added": {}}]	9	1
+127	2022-05-24 15:53:40.954912+03	94	Channel object (94)	1	[{"added": {}}]	9	1
+128	2022-05-24 15:54:05.145135+03	95	Channel object (95)	1	[{"added": {}}]	9	1
+129	2022-05-24 15:54:25.775098+03	96	Channel object (96)	1	[{"added": {}}]	9	1
+130	2022-05-24 15:54:51.03446+03	97	Channel object (97)	1	[{"added": {}}]	9	1
+131	2022-05-24 15:55:10.65928+03	98	Channel object (98)	1	[{"added": {}}]	9	1
+132	2022-05-24 15:55:39.386653+03	99	Channel object (99)	1	[{"added": {}}]	9	1
+133	2022-05-24 15:55:57.536067+03	100	Channel object (100)	1	[{"added": {}}]	9	1
+134	2022-05-24 15:56:14.501633+03	101	Channel object (101)	1	[{"added": {}}]	9	1
+135	2022-05-24 15:56:32.5289+03	102	Channel object (102)	1	[{"added": {}}]	9	1
+136	2022-05-24 15:56:52.019019+03	103	Channel object (103)	1	[{"added": {}}]	9	1
+137	2022-05-24 15:57:11.40108+03	104	Channel object (104)	1	[{"added": {}}]	9	1
+138	2022-05-24 15:57:37.352131+03	105	Channel object (105)	1	[{"added": {}}]	9	1
+139	2022-05-24 15:57:57.791807+03	106	Channel object (106)	1	[{"added": {}}]	9	1
+140	2022-05-24 15:58:12.654905+03	107	Channel object (107)	1	[{"added": {}}]	9	1
+141	2022-05-24 15:58:27.250234+03	108	Channel object (108)	1	[{"added": {}}]	9	1
+142	2022-05-24 15:58:52.726292+03	109	Channel object (109)	1	[{"added": {}}]	9	1
+143	2022-05-24 15:59:15.988008+03	110	Channel object (110)	1	[{"added": {}}]	9	1
+144	2022-05-24 15:59:47.845363+03	111	Channel object (111)	1	[{"added": {}}]	9	1
+145	2022-05-24 16:00:04.423984+03	112	Channel object (112)	1	[{"added": {}}]	9	1
+146	2022-05-24 16:00:22.229688+03	113	Channel object (113)	1	[{"added": {}}]	9	1
+147	2022-05-24 16:00:46.66412+03	114	Channel object (114)	1	[{"added": {}}]	9	1
+148	2022-05-24 16:02:03.558454+03	115	Channel object (115)	1	[{"added": {}}]	9	1
+149	2022-05-24 16:02:30.866978+03	116	Channel object (116)	1	[{"added": {}}]	9	1
+150	2022-05-24 16:02:46.310309+03	117	Channel object (117)	1	[{"added": {}}]	9	1
+151	2022-05-24 16:03:51.454882+03	118	Channel object (118)	1	[{"added": {}}]	9	1
+152	2022-05-24 16:09:44.117264+03	119	Channel object (119)	1	[{"added": {}}]	9	1
+153	2022-05-24 16:13:00.486568+03	120	Channel object (120)	1	[{"added": {}}]	9	1
+154	2022-05-24 16:13:32.242088+03	121	Channel object (121)	1	[{"added": {}}]	9	1
+155	2022-05-24 16:13:46.759768+03	122	Channel object (122)	1	[{"added": {}}]	9	1
+156	2022-05-24 16:14:00.986085+03	123	Channel object (123)	1	[{"added": {}}]	9	1
+157	2022-05-24 16:14:22.597319+03	124	Channel object (124)	1	[{"added": {}}]	9	1
+158	2022-05-24 16:14:43.52826+03	125	Channel object (125)	1	[{"added": {}}]	9	1
+159	2022-05-24 16:15:01.350354+03	126	Channel object (126)	1	[{"added": {}}]	9	1
+160	2022-05-24 16:15:24.772249+03	127	Channel object (127)	1	[{"added": {}}]	9	1
+161	2022-05-24 16:15:46.601969+03	128	Channel object (128)	1	[{"added": {}}]	9	1
+162	2022-05-24 16:16:04.06264+03	129	Channel object (129)	1	[{"added": {}}]	9	1
+163	2022-05-24 16:16:25.499261+03	130	Channel object (130)	1	[{"added": {}}]	9	1
+164	2022-05-24 16:17:01.636148+03	131	Channel object (131)	1	[{"added": {}}]	9	1
+165	2022-05-24 16:17:57.501203+03	132	Channel object (132)	1	[{"added": {}}]	9	1
+166	2022-05-24 16:18:20.601726+03	133	Channel object (133)	1	[{"added": {}}]	9	1
+167	2022-05-24 16:18:34.404426+03	134	Channel object (134)	1	[{"added": {}}]	9	1
+168	2022-05-24 16:18:47.922218+03	135	Channel object (135)	1	[{"added": {}}]	9	1
+169	2022-05-24 16:19:28.845663+03	136	Channel object (136)	1	[{"added": {}}]	9	1
+170	2022-05-24 16:19:56.839019+03	137	Channel object (137)	1	[{"added": {}}]	9	1
+171	2022-05-24 16:20:12.639915+03	138	Channel object (138)	1	[{"added": {}}]	9	1
+172	2022-05-24 16:20:28.468588+03	139	Channel object (139)	1	[{"added": {}}]	9	1
+173	2022-05-24 16:20:44.836939+03	140	Channel object (140)	1	[{"added": {}}]	9	1
+174	2022-05-24 16:21:25.626135+03	141	Channel object (141)	1	[{"added": {}}]	9	1
+175	2022-05-24 16:21:46.723959+03	142	Channel object (142)	1	[{"added": {}}]	9	1
+176	2022-05-24 16:22:04.61616+03	143	Channel object (143)	1	[{"added": {}}]	9	1
+177	2022-05-24 16:22:18.963644+03	144	Channel object (144)	1	[{"added": {}}]	9	1
+178	2022-05-24 16:23:08.131948+03	145	Channel object (145)	1	[{"added": {}}]	9	1
+179	2022-05-24 16:23:21.99632+03	146	Channel object (146)	1	[{"added": {}}]	9	1
+180	2022-05-24 16:23:45.659665+03	147	Channel object (147)	1	[{"added": {}}]	9	1
+181	2022-05-24 16:24:38.659273+03	148	Channel object (148)	1	[{"added": {}}]	9	1
+182	2022-05-24 16:24:56.358258+03	149	Channel object (149)	1	[{"added": {}}]	9	1
+183	2022-05-24 16:25:32.460879+03	150	Channel object (150)	1	[{"added": {}}]	9	1
+184	2022-05-24 16:26:14.788545+03	151	Channel object (151)	1	[{"added": {}}]	9	1
+185	2022-05-24 16:26:31.77239+03	152	Channel object (152)	1	[{"added": {}}]	9	1
+186	2022-05-24 16:26:55.405+03	153	Channel object (153)	1	[{"added": {}}]	9	1
+187	2022-05-24 16:27:19.95891+03	154	Channel object (154)	1	[{"added": {}}]	9	1
+188	2022-05-24 16:27:37.536589+03	155	Channel object (155)	1	[{"added": {}}]	9	1
+189	2022-05-24 16:28:05.011843+03	156	Channel object (156)	1	[{"added": {}}]	9	1
+190	2022-05-24 16:28:27.740918+03	157	Channel object (157)	1	[{"added": {}}]	9	1
+191	2022-05-24 16:28:50.74585+03	158	Channel object (158)	1	[{"added": {}}]	9	1
+192	2022-05-24 16:29:14.829524+03	159	Channel object (159)	1	[{"added": {}}]	9	1
+193	2022-05-24 16:29:36.190703+03	160	Channel object (160)	1	[{"added": {}}]	9	1
+194	2022-05-24 16:33:49.567396+03	161	Channel object (161)	1	[{"added": {}}]	9	1
+195	2022-05-24 16:34:25.988244+03	162	Channel object (162)	1	[{"added": {}}]	9	1
+196	2022-05-24 16:34:47.284583+03	163	Channel object (163)	1	[{"added": {}}]	9	1
+197	2022-05-24 16:35:48.678934+03	164	Channel object (164)	1	[{"added": {}}]	9	1
+198	2022-05-24 16:36:16.572393+03	165	Channel object (165)	1	[{"added": {}}]	9	1
+199	2022-05-24 16:36:38.962706+03	166	Channel object (166)	1	[{"added": {}}]	9	1
+200	2022-05-24 16:41:42.017298+03	167	Channel object (167)	1	[{"added": {}}]	9	1
+201	2022-05-24 16:42:30.346117+03	168	Channel object (168)	1	[{"added": {}}]	9	1
+202	2022-05-24 16:43:49.075848+03	169	Channel object (169)	1	[{"added": {}}]	9	1
+203	2022-05-24 16:44:12.959021+03	170	Channel object (170)	1	[{"added": {}}]	9	1
+204	2022-05-24 16:44:42.910593+03	171	Channel object (171)	1	[{"added": {}}]	9	1
+205	2022-05-24 16:44:58.079286+03	172	Channel object (172)	1	[{"added": {}}]	9	1
+206	2022-05-24 16:45:20.558796+03	173	Channel object (173)	1	[{"added": {}}]	9	1
+207	2022-05-24 16:45:55.470206+03	174	Channel object (174)	1	[{"added": {}}]	9	1
+208	2022-05-24 16:46:08.983865+03	175	Channel object (175)	1	[{"added": {}}]	9	1
+209	2022-05-24 16:46:32.519563+03	176	Channel object (176)	1	[{"added": {}}]	9	1
+210	2022-05-24 16:46:50.873159+03	177	Channel object (177)	1	[{"added": {}}]	9	1
+211	2022-05-24 16:47:05.83784+03	178	Channel object (178)	1	[{"added": {}}]	9	1
+212	2022-05-24 16:47:34.480204+03	179	Channel object (179)	1	[{"added": {}}]	9	1
+213	2022-05-24 16:47:51.327297+03	180	Channel object (180)	1	[{"added": {}}]	9	1
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+7	app_list	request
+8	app_list	tariff
+9	app_list	channel
+10	app_list	channelgroup
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2022-05-18 00:54:15.352793+03
+2	auth	0001_initial	2022-05-18 00:54:15.493478+03
+3	admin	0001_initial	2022-05-18 00:54:15.536472+03
+4	admin	0002_logentry_remove_auto_add	2022-05-18 00:54:15.546479+03
+5	admin	0003_logentry_add_action_flag_choices	2022-05-18 00:54:15.561622+03
+6	app_list	0001_initial	2022-05-18 00:54:15.581209+03
+7	app_list	0002_alter_request_appartment_alter_request_building_and_more	2022-05-18 00:54:15.604144+03
+8	contenttypes	0002_remove_content_type_name	2022-05-18 00:54:15.634064+03
+9	auth	0002_alter_permission_name_max_length	2022-05-18 00:54:15.648029+03
+10	auth	0003_alter_user_email_max_length	2022-05-18 00:54:15.662988+03
+11	auth	0004_alter_user_username_opts	2022-05-18 00:54:15.677955+03
+12	auth	0005_alter_user_last_login_null	2022-05-18 00:54:15.691906+03
+13	auth	0006_require_contenttypes_0002	2022-05-18 00:54:15.695109+03
+14	auth	0007_alter_validators_add_error_messages	2022-05-18 00:54:15.709041+03
+15	auth	0008_alter_user_username_max_length	2022-05-18 00:54:15.747434+03
+16	auth	0009_alter_user_last_name_max_length	2022-05-18 00:54:15.759172+03
+17	auth	0010_alter_group_name_max_length	2022-05-18 00:54:15.779123+03
+18	auth	0011_update_proxy_permissions	2022-05-18 00:54:15.792086+03
+19	auth	0012_alter_user_first_name_max_length	2022-05-18 00:54:15.806588+03
+20	sessions	0001_initial	2022-05-18 00:54:15.83187+03
+21	app_list	0003_tariff	2022-05-23 18:13:02.169834+03
+22	app_list	0004_alter_tariff_speed	2022-05-23 18:16:17.42517+03
+23	app_list	0005_tariff_yandex_alter_tariff_technology	2022-05-23 18:45:32.875472+03
+24	app_list	0006_alter_tariff_technology	2022-05-23 18:45:32.890431+03
+25	app_list	0007_alter_tariff_speed	2022-05-23 23:59:41.343922+03
+26	app_list	0008_channel	2022-05-24 00:39:54.425807+03
+27	app_list	0009_channel_group	2022-05-24 00:41:01.707888+03
+28	app_list	0010_channelgroup_alter_channel_group	2022-05-24 00:48:35.459247+03
+29	app_list	0011_alter_channel_thumbnail_file	2022-05-24 01:20:33.598775+03
+30	app_list	0012_remove_request_appartment_remove_request_l_name	2022-05-25 17:01:03.073012+03
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+j07ngor2pz4wa6u05mtaen5hm8b55l0h	.eJxVjEEOwiAQRe_C2hAYhra4dO8ZCMNMpWpoUtqV8e7apAvd_vfef6mYtrXErckSJ1ZnZdXpd6OUH1J3wPdUb7POc12XifSu6IM2fZ1ZnpfD_TsoqZVv7YRHRAtdD549IGYMAOy4C0TO-N5nRzCEjEY8OyNjkhy8QSAZ2Ab1_gDG5Tdv:1ntA7z:SLz7w1cmUosHlwU3O6UQXOCpvMqF1_XsA8fyXIO8Xkg	2022-06-06 18:37:51.388288+03
+bm4hdnkgkhmgdzl49fltikci7ks4pg18	.eJxVjEEOwiAQRe_C2hAYhra4dO8ZCMNMpWpoUtqV8e7apAvd_vfef6mYtrXErckSJ1ZnZdXpd6OUH1J3wPdUb7POc12XifSu6IM2fZ1ZnpfD_TsoqZVv7YRHRAtdD549IGYMAOy4C0TO-N5nRzCEjEY8OyNjkhy8QSAZ2Ab1_gDG5Tdv:1ntSp7:gyCOSiw03kHY_ZBYF1xXF3IvTdtk-oumn_ypyl22mj8	2022-06-07 14:35:37.19243+03
+\.
+
+
+--
+-- Name: app_list_channel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.app_list_channel_id_seq', 180, true);
+
+
+--
+-- Name: app_list_channelgroup_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.app_list_channelgroup_id_seq', 11, true);
+
+
+--
+-- Name: app_list_request_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.app_list_request_id_seq', 9, true);
+
+
+--
+-- Name: app_list_tariff_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.app_list_tariff_id_seq', 8, true);
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 40, true);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_user_id_seq', 1, true);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 213, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 10, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 30, true);
+
+
+--
+-- Name: app_list_channel app_list_channel_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_list_channel
+    ADD CONSTRAINT app_list_channel_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: app_list_channelgroup app_list_channelgroup_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_list_channelgroup
+    ADD CONSTRAINT app_list_channelgroup_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: app_list_request app_list_request_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_list_request
+    ADD CONSTRAINT app_list_request_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: app_list_tariff app_list_tariff_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_list_tariff
+    ADD CONSTRAINT app_list_tariff_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: app_list_channel_group_id_6fcc8033; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX app_list_channel_group_id_6fcc8033 ON public.app_list_channel USING btree (group_id);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON public.auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON public.auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON public.auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON public.auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: app_list_channel app_list_channel_group_id_6fcc8033_fk_app_list_channelgroup_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_list_channel
+    ADD CONSTRAINT app_list_channel_group_id_6fcc8033_fk_app_list_channelgroup_id FOREIGN KEY (group_id) REFERENCES public.app_list_channelgroup(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

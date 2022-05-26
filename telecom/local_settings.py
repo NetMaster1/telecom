@@ -9,7 +9,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'www.rostelecom.org', 'rostelecom.org
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_POSRT = 537
 EMAIL_HOST_USER = '79200711112@yandex.ru'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'unN-uWw-y7U-VLB'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
@@ -17,7 +17,7 @@ EMAIL_USE_SSL = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'requests_db',
+        'NAME': 'requests',
         'USER': 'postgres',
         'PASSWORD': 'ylhio65v',
         'HOST': 'localhost',
