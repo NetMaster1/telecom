@@ -9,8 +9,6 @@ def send_email (request):
     request_dateTime=current_request.created
     request_dateTime=request_dateTime.strftime('%Y-%m-%dT%H:%M')
 
-    
-
     send_mail (
         #subject
         'Заявка Ростелеком ' + request_dateTime,
