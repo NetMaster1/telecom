@@ -5,7 +5,8 @@
 <div class="row justify-content-between">
     <div class="col-5">
            
-        <div class="row m-auto mt-3 mb-3" style="font-size: 2rem; font-weight: 400">Заявка на подключение</div>
+        <div class="row m-auto mt-3" style="font-size: 2rem; font-weight: 500">Заявка на подключение</div>
+        <div class="row m-auto mb-3" style="font-weight: 500">Наш оператор свяжется с вами в течение часа</div>
             <div class="modal-body">
                 <form action="{% url 'create_new_request' tarif.id %}" method="POST">
                     {% csrf_token %}
